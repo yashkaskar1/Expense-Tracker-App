@@ -27,5 +27,5 @@ public class UserInfo {
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = =@JoinColumn(name = "role_id")
     )
-    private Set<UserRole> role=new HashSet<>();
+    private Set<UserRole> roles = new HashSet<>();
 }
