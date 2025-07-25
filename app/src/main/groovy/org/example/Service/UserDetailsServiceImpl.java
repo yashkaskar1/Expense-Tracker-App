@@ -39,7 +39,7 @@ public UserDetails loadUserByUsername (String username)throws UsernameNotFoundEx
     }
 
     public Boolean signupUser(UserInfoDto userInfoDto){
-        //        ValidationUtil.validateUserAttributes(userInfoDto);
+              // ValidationUtil.validateUserAttributes(userInfoDto);
         userInfoDto.setPassword(passwordEncoder.encode(userInfoDto.getPassword()));
         if(Objects.nonNull(checkIfUserAlreadyExist(userInfoDto))){
             return false;
