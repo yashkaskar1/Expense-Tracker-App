@@ -45,19 +45,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
-
         return http
-                .csrf(AbstractHttpConfigurer::disable).cors(CorsConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers( "/auth/v1/login", "/auth/v1/refreshToken", "/auth/v1/signup").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .httpBasic(Customizer.withDefaults())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .authenticationProvider(authenticationProvider())
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/auth/v1/login", "/auth/v1/refreshToken", "/auth/v1/signup").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .build();
     }
+
+
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
