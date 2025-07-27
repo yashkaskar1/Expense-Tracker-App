@@ -14,7 +14,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext
 class App {
     static void main(String[] args) {
        SpringApplication.run(App.class,args)
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        UserConfig config=(UserConfig) context.getBean("userConfigBean");
+
     }
 }
